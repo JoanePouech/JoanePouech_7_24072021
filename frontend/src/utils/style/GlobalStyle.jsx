@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import colors from './colors';
 
 const StyledGlobalStyle = createGlobalStyle`
     * {
@@ -10,6 +11,24 @@ const StyledGlobalStyle = createGlobalStyle`
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+    }
+
+    a {
+        text-decoration: none;
+        color: white;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    h1 {
+        font-size: 3rem;
+        color: ${colors.secondary};
+        text-align: center;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+        color: ${colors.secondary};
     }
 
     p {

@@ -14,7 +14,6 @@ const HeaderContainer = styled.header`
         height: 80px;
     }
 `
-
 const HeaderLogo = styled.img`
     height: 350px;
     @media screen and (max-width: 768px) {
