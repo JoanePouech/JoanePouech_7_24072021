@@ -9,10 +9,17 @@ const HeaderContainer = styled.header`
     background-color: ${colors.primary};
     display: flex;
     justify-content: space-between;
-    align-items: center;`
+    align-items: center;
+    @media screen and (max-width: 768px) {
+        height: 80px;
+    }
+`
 
 const HeaderLogo = styled.img`
     height: 350px;
+    @media screen and (max-width: 768px) {
+        height: 200px; 
+    }
 `
 const HeaderUser = styled.div`
     display: flex;
