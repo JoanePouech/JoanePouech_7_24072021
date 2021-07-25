@@ -12,6 +12,15 @@ const StyledGlobalStyle = createGlobalStyle`
         box-sizing: border-box;
     }
 
+    p {
+        font-size: 1.5rem
+    }
+
+    .remark {
+        font-size: 1.1rem;
+        font-style: italic
+    }
+
 `
 
 function GlobalStyle() {  
