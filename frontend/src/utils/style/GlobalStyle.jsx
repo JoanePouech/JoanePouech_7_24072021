@@ -15,7 +15,7 @@ const StyledGlobalStyle = createGlobalStyle`
 
     a {
         text-decoration: none;
-        color: white;
+
         font-size: 1.5rem;
         font-weight: bold;
     }
@@ -38,6 +38,19 @@ const StyledGlobalStyle = createGlobalStyle`
     .remark {
         font-size: 1.1rem;
         font-style: italic
+    }
+
+    .primary-color {
+        color: ${colors.primary};
+    }
+    .secondary-color {
+        color: ${colors.secondary};
+    }
+    .tertiary-color {
+        color: ${colors.tertiary};
+    }
+    .white-color {
+        color: white;
     }
 
 `
