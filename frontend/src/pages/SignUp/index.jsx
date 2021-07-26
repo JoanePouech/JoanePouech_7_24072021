@@ -1,6 +1,7 @@
 import colors from '../../utils/style/colors';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import SquareButton from '../../utils/style/SquareButton';
 
 const SignUpContainer = styled.section`
     padding: 2rem;
@@ -11,11 +12,11 @@ const SignUpContainer = styled.section`
 const SignUpBox = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    text-align: center;
+    align-items: center;
 `
 const SignUpForm = styled.form`
-    width: 40vh;
+    width: 50vh;
+    max-width: 75%;
     padding: 5rem 0;
     display: flex;
     flex-direction: column;
@@ -35,14 +36,6 @@ const SignUpForm = styled.form`
         background-color: ${colors.tertiary};
     }
 `
-const LinkButton = styled.button`
-    width: 20rem;
-    padding: 2rem;
-    margin: 2rem;
-    background-color: ${colors.primary};
-    border: none;
-    border-radius: 8px;
-`
 
 function SignUp () {
     return (
@@ -57,15 +50,14 @@ function SignUp () {
                     <input name="email" id="email" type="email" required />
                     <label for="password" className="primary-color">Mot de passe</label>
                     <input name="password" id="password" type="text" required />
-                    <LinkButton>
-                        <Link to="/articles" className="white-color">Se connecter</Link>
-                    </LinkButton>
+                    <SquareButton>
+                        <Link to="/articles" className="white-color">S'inscrire</Link>
+                    </SquareButton>
                 </SignUpForm>
                 <h2>Déjà inscrit ?</h2>
                 <Link to="/login" className="primary-color">Connectez-vous ici</Link>
             </SignUpBox>            
         </SignUpContainer>
-
     )
 };
 
