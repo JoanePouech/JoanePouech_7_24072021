@@ -40,7 +40,7 @@ function MainPage () {
             </MainPageTitles>
             <ArticlesContainer>
                 {articleList.map((article) => (
-                    <Link to="/articles" key={article.id}>
+                    <Link to={"/articles/:"+article.id} key={article.id}>
                         <Article 
                             title={article.title}
                             content={article.content}
