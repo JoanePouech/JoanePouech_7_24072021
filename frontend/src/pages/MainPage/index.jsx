@@ -34,7 +34,7 @@ function MainPage () {
         <MainPageContainer>
             <MainPageTitles>
                 <h1>Les derniers articles ajoutés :</h1>
-                <Link to="/articles/new">
+                <Link to="/new">
                     <RedButton>Ajouter un article</RedButton>
                 </Link>                
             </MainPageTitles>

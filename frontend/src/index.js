@@ -28,10 +28,10 @@ ReactDOM.render(
         <Route exact path="/articles">
           <MainPage/>
         </Route>
-        <Route path="/articles/:id">
+        <Route exact path="/articles/:id">
           <ArticleDetail/>
         </Route>
-        <Route path="/articles/new">
+        <Route exact path="/new">
           <ArticleNew/>
         </Route>
       </Switch>
