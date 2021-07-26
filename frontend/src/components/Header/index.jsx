@@ -1,6 +1,6 @@
 import colors from '../../utils/style/colors';
 import styled from 'styled-components';
-import logo from '../../assets/icon-left-font-monochrome-white.png'
+import logo from '../../assets/icon-left-font-monochrome-white.png';
 
 const HeaderContainer = styled.header`
     height: 100px;
@@ -17,7 +17,7 @@ const HeaderContainer = styled.header`
 const HeaderLogo = styled.img`
     height: 350px;
     @media screen and (max-width: 768px) {
-        height: 200px; 
+        height: 190px; 
     }
 `
 const HeaderUser = styled.div`

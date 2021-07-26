@@ -15,9 +15,7 @@ const StyledGlobalStyle = createGlobalStyle`
 
     a {
         text-decoration: none;
-
         font-size: 1.5rem;
-        font-weight: bold;
     }
 
     h1 {
@@ -52,7 +50,6 @@ const StyledGlobalStyle = createGlobalStyle`
     .white-color {
         color: white;
     }
-
 `
 
 function GlobalStyle() {  

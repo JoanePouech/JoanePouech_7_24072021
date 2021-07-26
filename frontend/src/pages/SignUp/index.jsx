@@ -1,7 +1,7 @@
 import colors from '../../utils/style/colors';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import SquareButton from '../../utils/style/SquareButton';
+import BlueButton from '../../components/BlueButton/BlueButton';
 
 const SignUpContainer = styled.section`
     padding: 2rem;
@@ -16,7 +16,7 @@ const SignUpBox = styled.div`
 `
 const SignUpForm = styled.form`
     width: 50vh;
-    max-width: 75%;
+    max-width: 60%;
     padding: 5rem 0;
     display: flex;
     flex-direction: column;
@@ -50,9 +50,9 @@ function SignUp () {
                     <input name="email" id="email" type="email" required />
                     <label for="password" className="primary-color">Mot de passe</label>
                     <input name="password" id="password" type="text" required />
-                    <SquareButton>
+                    <BlueButton>
                         <Link to="/articles" className="white-color">S'inscrire</Link>
-                    </SquareButton>
+                    </BlueButton>
                 </SignUpForm>
                 <h2>Déjà inscrit ?</h2>
                 <Link to="/login" className="primary-color">Connectez-vous ici</Link>

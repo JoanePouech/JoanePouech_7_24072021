@@ -1,7 +1,7 @@
 import colors from '../../utils/style/colors';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import SquareButton from '../../utils/style/SquareButton';
+import BlueButton from '../../components/BlueButton/BlueButton';
 
 const LoginContainer = styled.section`
     padding: 2rem;
@@ -16,7 +16,7 @@ const LoginBox = styled.div`
 `
 const LoginForm = styled.form`
     width: 50vh;
-    max-width: 75%;
+    max-width: 60%;
     padding: 5rem 0;
     display: flex;
     flex-direction: column;
@@ -48,9 +48,9 @@ function Login () {
                     <input name="email" id="email" type="email" required />
                     <label for="password" className="primary-color">Mot de passe</label>
                     <input name="password" id="password" type="text" required />
-                    <SquareButton>
+                    <BlueButton>
                         <Link to="/articles" className="white-color">Se connecter</Link>
-                    </SquareButton>
+                    </BlueButton>
                 </LoginForm>
                 <h2>Nouveau venu ?</h2>
                 <Link to="/signup" className="primary-color">Inscrivez-vous ici</Link>

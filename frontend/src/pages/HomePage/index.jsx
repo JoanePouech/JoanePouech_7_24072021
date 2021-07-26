@@ -1,7 +1,6 @@
-import colors from '../../utils/style/colors';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import SquareButton from '../../utils/style/SquareButton';
+import BlueButton from '../../components/BlueButton/BlueButton';
 
 const HomePageContainer = styled.section `
     padding: 2rem;
@@ -33,15 +32,15 @@ function Homepage () {
             <HomePageChoice>
                 <HomePageBox>
                     <h2>Nouveau venu ?</h2>
-                    <SquareButton>
+                    <BlueButton>
                         <Link to="/signup" className="white-color">S'inscrire</Link>
-                    </SquareButton>
+                    </BlueButton>
                 </HomePageBox>
                 <HomePageBox>
                     <h2>Déjà inscrit ?</h2>
-                    <SquareButton>
+                    <BlueButton>
                         <Link to="/login" className="white-color">Se connecter</Link>
-                    </SquareButton>
+                    </BlueButton>                                        
                 </HomePageBox>
             </HomePageChoice>
         </HomePageContainer>        
