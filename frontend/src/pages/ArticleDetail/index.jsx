@@ -2,7 +2,7 @@ import colors from '../../utils/style/colors';
 import styled from 'styled-components';
 import RedButton from '../../components/RedButton/index';
 import BackButton from '../../components/BackButton/BackButton';
-// import {useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import { articleList } from '../../datas/articleList';
 import { commentList } from '../../datas/commentList';
 import { Link } from 'react-router-dom';
@@ -46,8 +46,8 @@ const ArticleDetailComments = styled.div`
 `
 
 function ArticleDetail () {
-    // const index = parseInt((useParams().id.split(':')[1]));
-    const article = articleList[3];
+    const index = parseInt(useParams().id)-1;
+    const article = articleList[index];
 
     return (
         <ArticleDetailContainer>

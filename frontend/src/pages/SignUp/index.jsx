@@ -55,7 +55,7 @@ function SignUp () {
                     </BlueButton>
                 </SignUpForm>
                 <h2>Déjà inscrit ?</h2>
-                <Link to="/login" className="primary-color">Connectez-vous ici</Link>
+                <Link to="/auth/login" className="primary-color">Connectez-vous ici</Link>
             </SignUpBox>            
         </SignUpContainer>
     )

@@ -34,13 +34,13 @@ function MainPage () {
         <MainPageContainer>
             <MainPageTitles>
                 <h1>Les derniers articles ajoutés :</h1>
-                <Link to="/new">
+                <Link to="/articles/new">
                     <RedButton>Ajouter un article</RedButton>
                 </Link>                
             </MainPageTitles>
             <ArticlesContainer>
                 {articleList.map((article) => (
-                    <Link to={"/articles/:"+article.id} key={article.id}>
+                    <Link to={"/articles/"+article.id} key={article.id}>
                         <Article 
                             title={article.title}
                             content={article.content}

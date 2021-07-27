@@ -36,7 +36,9 @@ const ArticleNewForm = styled.form`
 function ArticleNew () {
     return (
         <ArticleNewContainer>
-            <BackButton />   
+            <Link to='/articles'>
+                <BackButton />
+            </Link>   
             <h1>Soumettre un nouvel article</h1>         
             <ArticleNewForm>
                 <label for="title" className="primary-color">Titre de l'article</label>
@@ -48,7 +50,6 @@ function ArticleNew () {
                 </BlueButton>
             </ArticleNewForm>
         </ArticleNewContainer>
-
     )
 };
 

@@ -19,19 +19,19 @@ ReactDOM.render(
         <Route exact path="/">
           <HomePage/>
         </Route>
-        <Route path="/signup">
+        <Route path="/auth/signup">
           <SignUp/>
         </Route>
-        <Route path="/login">
+        <Route path="/auth/login">
           <Login/>
         </Route>
         <Route exact path="/articles">
           <MainPage/>
         </Route>
-        <Route exact path="/articles/:id">
+        <Route exact path="/articles/:id(\d+)">
           <ArticleDetail/>
         </Route>
-        <Route exact path="/new">
+        <Route exact path="/articles/new">
           <ArticleNew/>
         </Route>
       </Switch>

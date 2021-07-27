@@ -33,13 +33,13 @@ function Homepage () {
                 <HomePageBox>
                     <h2>Nouveau venu ?</h2>
                     <BlueButton>
-                        <Link to="/signup" className="white-color">S'inscrire</Link>
+                        <Link to="/auth/signup" className="white-color">S'inscrire</Link>
                     </BlueButton>
                 </HomePageBox>
                 <HomePageBox>
                     <h2>Déjà inscrit ?</h2>
                     <BlueButton>
-                        <Link to="/login" className="white-color">Se connecter</Link>
+                        <Link to="/auth/login" className="white-color">Se connecter</Link>
                     </BlueButton>                                        
                 </HomePageBox>
             </HomePageChoice>

@@ -10,6 +10,9 @@ const StyledBackButton = styled.button`
         height: 10px;
         padding-right: 0.5rem;
     }
+    &:hover {
+        cursor:pointer;
+    }
 `
 
 function BackButton () {
