@@ -1,12 +1,15 @@
-// const Sauce = require('../models/Sauce');
+// const db = require ('../models/index');
+// const Article = require('../models/article');
 // const fs = require('fs');
 
-// //Requête GET générale
-// exports.getAllSauces = (req, res, next) => {
-//     Sauce.find()
-//         .then(sauces => res.status(200).json(sauces))
-//         .catch(error => res.status(400).json({error}));
-// };
+// Requête GET générale
+exports.getAllArticles = (req, res, next) => {
+    article.findAll()
+        .then(res => {
+            console.log(res),
+            res.status(200).send("Requête GET générale")})
+        .catch(error => res.status(400).json({error}));
+};
 
 // //Requête GET ciblée
 // exports.getOneSauce = (req, res, next) => {

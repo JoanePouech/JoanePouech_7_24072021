@@ -4,7 +4,7 @@ const router = express.Router();
 const articlesCtrl = require('../controllers/articles');
 const auth = require('../middlewares/auth');
 
-// router.get('/', auth, articlesCtrl.getAllArticles);
+router.get('/',  articlesCtrl.getAllArticles);
 // router.get('/:id', auth, articlesCtrl.getOneArticle);
 // router.post('/', auth, articlesCtrl.createArticle);
 // router.put('/:id', auth, articlesCtrl.updateArticle);
