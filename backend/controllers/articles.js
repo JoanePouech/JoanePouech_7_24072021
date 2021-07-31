@@ -1,13 +1,13 @@
-// const db = require ('../models/index');
+const model = require ('../models/index');
 // const Article = require('../models/article');
 // const fs = require('fs');
 
 // Requête GET générale
 exports.getAllArticles = (req, res, next) => {
-    article.findAll()
-        .then(res => {
-            console.log(res),
-            res.status(200).send("Requête GET générale")})
+    model.Article.findAll()
+        .then(articles => {
+            console.log(articles),
+            res.status(200).json({message:"Requête GET générale"})})
         .catch(error => res.status(400).json({error}));
 };
 
