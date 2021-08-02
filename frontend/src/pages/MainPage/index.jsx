@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { articleList } from '../../datas/articleList';
 import Article from '../../components/Article';
 import RedButton from '../../components/RedButton/index';
+import { useState, useEffect } from 'react';
 
 const MainPageContainer = styled.section`
     padding: 2rem;
@@ -30,6 +30,23 @@ const ArticlesContainer = styled.div`
 `
 
 function MainPage () {
+
+    const [articlesList, setArticlesList] = useState([]);
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const token = localStorage.getItem("Token");
+                const response = await fetch(`http://localhost:3000/api/articles`, {headers: {"Authorization": "Bearer " + token}})
+                const data = await response.json()
+                setArticlesList(data)
+            } catch (err) {
+                console.log(err)
+            }
+          }
+          fetchData()
+    }, [])
+
     return (
         <MainPageContainer>
             <MainPageTitles>
@@ -38,16 +55,16 @@ function MainPage () {
                     <RedButton>Ajouter un article</RedButton>
                 </Link>                
             </MainPageTitles>
-            <ArticlesContainer>
-                {articleList.map((article) => (
+            <ArticlesContainer>                
+                {articlesList.map((article) => (
                     <Link to={"/articles/"+article.id} key={article.id}>
                         <Article 
                             title={article.title}
                             content={article.content}
-                            like={article.like}
                             comments={article.comments}
                         />
-                    </Link>))}
+                    </Link>))}                    
+                
             </ArticlesContainer>
         </MainPageContainer>        
     )

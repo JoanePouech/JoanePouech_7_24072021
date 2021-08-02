@@ -1,7 +1,5 @@
 import colors from '../../utils/style/colors';
 import styled from 'styled-components';
-import iconDislike from '../../assets/iconDislike.png';
-import iconLike from '../../assets/iconLike.png';
 
 const StyledArticleContainer = styled.div`
     width: 30vw;
@@ -37,9 +35,6 @@ const ArticleSocial = styled.div`
         color: ${colors.secondary};
     }
 `
-const ArticleLike = styled.img`
-    height: 20px;
-`
 
 function Article ({title, content, like, comments}) {
     return (
@@ -48,7 +43,6 @@ function Article ({title, content, like, comments}) {
             <p className="primary-color">Aperçu:</p>
             <ArticleSummary>{content}</ArticleSummary> 
             <ArticleSocial>
-                <ArticleLike src={like === 1? iconLike:iconDislike}/>
                 <p className="remark">Commentaires: {comments}</p>
             </ArticleSocial>
         </StyledArticleContainer>        

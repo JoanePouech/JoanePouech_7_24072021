@@ -4,13 +4,12 @@ const helmet = require ('helmet');
 require('dotenv').config();
 const articlesRoutes = require('./routes/articles');
 const userRoutes = require('./routes/user');
-const sequelize = require('sequelize');
-// const db = require('./models/index');
+const commentsRoutes = require('./routes/comments');
 
 //Configuration du limiteur de requêtes
 const limiter = rateLimit ({
     windowMs: 10*60*1000, // 10 minutes (en ms) - temps de blocage
-    max: 10 // nombre de requêtes autorisées
+    max: 1000 // nombre de requêtes autorisées
 });
 
 //Création de l'application Express
@@ -29,6 +28,7 @@ app.use(express.json());
 //Configuration des routeurs
 app.use('/api/articles', articlesRoutes);
 app.use('/api/auth', limiter, userRoutes);
+app.use('/api/comments', commentsRoutes);
 
 //Export
 module.exports = app;

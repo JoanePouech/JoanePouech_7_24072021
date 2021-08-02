@@ -28,6 +28,7 @@ exports.login = (req, res, next) => {
                         return res.status(401).json({error:"Mot de passe incorrect"});
                     }
                     res.status(200).json({
+                        Username: user.username,
                         UserId: user.id,
                         token: jwt.sign(
                             {UserId: user.id},
@@ -36,17 +37,14 @@ exports.login = (req, res, next) => {
                         )
                     });
                 })
-                .catch(error => res.status(500).json({error:"A"}));
+                .catch(error => res.status(500).json({error}));
         })
-        .catch(error => res.status(500).json({error:"B"}));    
+        .catch(error => res.status(500).json({error}));    
 };
 
 //Requête DELETE
 exports.deleteUser = (req, res, next) => {
-    const token = req.headers.authorization.split(' ')[1];
-    const decodeToken = jwt.verify(token, `${process.env.TOKEN}`);
-    const UserId = decodeToken.UserId;
-    model.User.destroy({where: {id: UserId}})
+    model.User.destroy({where: {id: req.body.UserId}})
         .then(() => res.status(200).json({message: 'Utilisateur supprimé'}))  
         .catch(error => res.status(400).json({error}));
 };

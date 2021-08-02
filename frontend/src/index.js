@@ -28,7 +28,7 @@ ReactDOM.render(
         <Route exact path="/articles">
           <MainPage/>
         </Route>
-        <Route exact path="/articles/:id(\d+)">
+        <Route path="/articles/:id(\d+)">
           <ArticleDetail/>
         </Route>
         <Route exact path="/articles/new">

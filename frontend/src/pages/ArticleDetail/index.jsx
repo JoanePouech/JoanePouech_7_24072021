@@ -3,10 +3,9 @@ import styled from 'styled-components';
 import RedButton from '../../components/RedButton/index';
 import BackButton from '../../components/BackButton/BackButton';
 import {useParams} from 'react-router-dom';
-import { articleList } from '../../datas/articleList';
-import { commentList } from '../../datas/commentList';
 import { Link } from 'react-router-dom';
 import Comment from '../../components/Comment/Comment';
+import { useState, useEffect } from 'react';
 
 const ArticleDetailContainer = styled.section`
     padding: 2rem;
@@ -46,8 +45,30 @@ const ArticleDetailComments = styled.div`
 `
 
 function ArticleDetail () {
-    const index = parseInt(useParams().id)-1;
-    const article = articleList[index];
+    const index = parseInt(useParams().id);
+    const [article, setArticle] = useState([]);
+    const [commentsList, setCommentsList] = useState([]);
+
+    useEffect(() => {
+        async function fetchData() {
+            const token = localStorage.getItem("Token");
+            try {
+              const response = await fetch(`http://localhost:3000/api/articles/`+index, {headers: {"Authorization": "Bearer " + token}})
+              const data = await response.json()
+              setArticle(data)
+            } catch (err) {
+              console.log(err)
+            }
+            try {
+                const response = await fetch(`http://localhost:3000/api/comments/`+index, {headers: {"Authorization": "Bearer " + token}})
+                const data = await response.json()
+                setCommentsList(data)
+              } catch (err) {
+                console.log(err)
+              }
+          }
+          fetchData()
+    }, [])
 
     return (
         <ArticleDetailContainer>
@@ -56,11 +77,15 @@ function ArticleDetail () {
             </Link>            
             <ArticleDetailTitles>
                 <h1>{article.title}</h1>
-                <div>
-                    <RedButton>Supprimer</RedButton>
-                    <RedButton>Modifier</RedButton>  
-                </div>
-        
+                {article.UserId === localStorage.getItem("UserId") ? (
+                    <div>
+                        <RedButton>Supprimer</RedButton>
+                        <RedButton>Modifier</RedButton>  
+                    </div>
+                ):(
+                    <div>
+                    </div>
+                )}        
             </ArticleDetailTitles>
             <ArticleDetailContent>{article.content}</ArticleDetailContent>
             <ArticleDetailAddComment>
@@ -68,11 +93,11 @@ function ArticleDetail () {
                 <RedButton>Envoyer</RedButton>
             </ArticleDetailAddComment>
             <ArticleDetailComments>
-                {commentList.map((comment) => (
+                {commentsList.map((comment) => (
                     <Comment 
                         key={comment.id}
-                        profile={comment.profile}
-                        content={comment.content}
+                        profile={comment.username}
+                        content={comment.post}
                     />
                 ))}
             </ArticleDetailComments>        

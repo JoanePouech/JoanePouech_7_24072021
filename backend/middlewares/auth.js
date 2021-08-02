@@ -9,7 +9,6 @@ module.exports = (req, res, next) => {
         if (req.body.UserId && req.body.UserId !== UserId) {
             throw 'User ID non valable';
         } else {
-            req.UserId = UserId;
             next();
         } 
     } catch (error) {

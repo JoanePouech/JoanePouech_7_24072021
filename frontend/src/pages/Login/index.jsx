@@ -38,19 +38,71 @@ const LoginForm = styled.form`
 `
 
 function Login () {
+    const textRegex = new RegExp ("^[\\w\\ \\'\\-\\u00C0-\\u024F]+$"); // Expression régulière pour les champs "text"
+    const emailRegex = new RegExp ('^[\\w\\-\\.\\+]+\\@[\\w\\.\\-]+\\.[\\w]{2,4}$'); // Expression régulière pour les champs "email"
+    let email = "", password = "";
+    let emailValidity = false, passwordValidity = false;
+
+    // Récupération des données utilisateurs
+    function handleInputChange(event) {
+        if (event.target.name === 'email') email = event.target.value;
+        if (event.target.name === 'password') password = event.target.value;
+    };
+    
+    function formSubmit(event) {
+        event.preventDefault();
+        // Vérification des données: non nulles & format valable
+        if (!email || !password) {
+            alert("Les deux champs 'Email' et 'Mot de passe' sont obligatoires");
+        } else {
+            (!emailRegex.test(email)) ? alert("Votre email doit être du format jean.dupont@mail.com") : emailValidity = true;
+            (!textRegex.test(password)) ? alert("Le mot de passe ne doit contenir que des lettres ou des chiffres") : passwordValidity = true;
+        }
+    
+        //Envoi de la requête
+        if (emailValidity && passwordValidity) {
+            async function fetchData() {
+                try {
+                    const response = await fetch(`http://localhost:3000/api/auth/login`, {
+                        method: "POST",
+                        headers: {
+                            "Accept": "application/json",
+                            "Content-type": "application/json"
+                        },
+                        body: JSON.stringify({email, password})
+                    });
+                    const data = await response.json();
+                    if (data.error) {
+                        alert(data.error);
+                    } else {
+                        console.log("Authentification réussie");
+                        localStorage.removeItem('Token');
+                        localStorage.setItem('Token', data.token);
+                        localStorage.removeItem('UserId');
+                        localStorage.setItem('UserId', data.UserId);
+                        localStorage.removeItem('Username');
+                        localStorage.setItem('Username', data.Username);
+                        window.location.href = "/articles"
+                    }
+                } catch (err) {
+                    console.log(err)
+                }
+            }
+            fetchData()
+        }
+    }
+    
     return (
         <LoginContainer>
             <h1>Bienvenue sur notre réseau social interne</h1>
             <LoginBox>
                 <h2>Déjà inscrit ?</h2>
-                <LoginForm>
-                    <label for="email" className="primary-color">Email</label>
-                    <input name="email" id="email" type="email" required />
-                    <label for="password" className="primary-color">Mot de passe</label>
-                    <input name="password" id="password" type="text" required />
-                    <BlueButton>
-                        <Link to="/articles" className="white-color">Se connecter</Link>
-                    </BlueButton>
+                <LoginForm onSubmit={(event) => formSubmit(event)}>
+                        <label htmlFor="email" className="primary-color">Email</label>
+                        <input name="email" id="email" type="email" required onChange={(event) => handleInputChange(event)}/>
+                        <label htmlFor="password" className="primary-color">Mot de passe</label>
+                        <input name="password" id="password" type="password" required onChange={(event) => handleInputChange(event)}/>
+                        <BlueButton className="white-color">Se connecter</BlueButton>
                 </LoginForm>
                 <h2>Nouveau venu ?</h2>
                 <Link to="/auth/signup" className="primary-color">Inscrivez-vous ici</Link>
