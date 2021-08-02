@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import MainPage from './pages/MainPage';
 import ArticleDetail from './pages/ArticleDetail';
 import ArticleNew from './pages/ArticleNew';
+import ArticleModif from './pages/ArticleModif';
 import Header from './components/Header';
 import GlobalStyle from './utils/style/GlobalStyle';
 
@@ -33,6 +34,9 @@ ReactDOM.render(
         </Route>
         <Route exact path="/articles/new">
           <ArticleNew/>
+        </Route>
+        <Route exact path="/articles/modify/:id">
+          <ArticleModif/>
         </Route>
       </Switch>
     </Router>

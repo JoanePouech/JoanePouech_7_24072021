@@ -13,6 +13,9 @@ const StyledRedButton = styled.button`
         color: white;
         font-size: 1.5rem;
     }
+    &:hover {
+        cursor:pointer;
+    }
 `
 
 function RedButton ({children}) {

@@ -3,6 +3,8 @@ import styled from "styled-components";
 import colors from "../../utils/style/colors";
 import BlueButton from "../../components/BlueButton/BlueButton";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import {useParams} from 'react-router-dom';
 
 const ArticleNewContainer = styled.section`
 
@@ -34,18 +36,32 @@ const ArticleNewForm = styled.form`
 `
 
 function ArticleNew () {
-    const textRegex = new RegExp ("^[^<>]+$"); // Expression régulière pour les champs "text"
+    const token = localStorage.getItem("Token");
+    const index = parseInt(useParams().id);
+    const textRegex = new RegExp ("^[^<>]+$"); // Expression régulière pour les champs "text" excluant les chevrons
     let title = "", content = "";
     let titleValidity = false, contentValidity = false;
+    const [oldVersion, setOldVersion] = useState([]);
 
-    // Récupération des données utilisateurs
-    function handleInputChange(event) {
-        if (event.target.name === 'title') title = event.target.value;
-        if (event.target.name === 'content') content = event.target.value;
-    };
-    
+    useEffect(() => {
+        async function fetchData() {            
+            try {
+                const response = await fetch(`http://localhost:3000/api/articles/`+index, {headers: {"Authorization": "Bearer " + token}});
+                const data = await response.json();
+                setOldVersion(data);
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        fetchData();
+    }, [])
+
+
     function formSubmit(event) {
         event.preventDefault();
+        title = event.target[0].value;
+        content = event.target[1].value;
+
         // Vérification des données: non nulles & format valable
         if (!title || !content) {
             alert("Un titre et un contenu sont obligatoires");
@@ -61,8 +77,8 @@ function ArticleNew () {
                     const UserId = localStorage.getItem("UserId");
                     const token = localStorage.getItem("Token");
                     console.log(token);
-                    const response = await fetch(`http://localhost:3000/api/articles`, {
-                        method: "POST",
+                    const response = await fetch(`http://localhost:3000/api/articles/modify/`+index, {
+                        method: "PUT",
                         headers: {
                             "Authorization": "Bearer " + token,
                             "Accept": "application/json",
@@ -74,7 +90,7 @@ function ArticleNew () {
                     if (data.error) {
                         alert(data.error);
                     } else {
-                        alert("Nouvel article crée !")
+                        alert("Article modifié !")
                         window.location.href = "/articles"
                     }
                 } catch (err) {
@@ -90,13 +106,13 @@ function ArticleNew () {
             <Link to='/articles'>
                 <BackButton />
             </Link>   
-            <h1>Soumettre un nouvel article</h1>         
+            <h1>Modifier un article</h1>         
             <ArticleNewForm onSubmit={(event) => formSubmit(event)}>
                 <label htmlFor="title" className="primary-color">Titre de l'article</label>
-                <input name="title" id="title" type="text" required onChange={(event) => handleInputChange(event)}/>
+                <input name="title" id="title" type="text" defaultValue={oldVersion.title} required/>
                 <label htmlFor="content" className="primary-color">Contenu de l'article</label>
-                <textarea name="content" id="content" required onChange={(event) => handleInputChange(event)}/>
-                <BlueButton className="white-color">Soumettre</BlueButton>
+                <textarea name="content" id="content" defaultValue={oldVersion.content} required/>
+                <BlueButton className="white-color">Modifier</BlueButton>
             </ArticleNewForm>
         </ArticleNewContainer>
     )

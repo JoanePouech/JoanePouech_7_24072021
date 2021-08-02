@@ -48,6 +48,7 @@ function ArticleDetail () {
     const index = parseInt(useParams().id);
     const [article, setArticle] = useState([]);
     const [commentsList, setCommentsList] = useState([]);
+    const UserIdLocal = parseInt(localStorage.getItem("UserId"));
 
     useEffect(() => {
         async function fetchData() {
@@ -70,6 +71,32 @@ function ArticleDetail () {
           fetchData()
     }, [])
 
+    function deleteArticle () {    
+        console.log("A")    ;
+        async function fetchData() {
+            try {
+                const token = localStorage.getItem("Token");
+                const response = await fetch(`http://localhost:3000/api/articles/`+index, {
+                    method: "DELETE",
+                    headers: {
+                        "Authorization": "Bearer " + token,
+                        "Accept": "application/json",
+                        "Content-type": "application/json"
+                    },
+                });
+                const data = await response.json();
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    alert("Article supprimé");
+                }
+            } catch (err) {
+                console.log(err)
+            }
+          }
+        fetchData();
+    };
+
     return (
         <ArticleDetailContainer>
             <Link to='/articles'>
@@ -77,13 +104,13 @@ function ArticleDetail () {
             </Link>            
             <ArticleDetailTitles>
                 <h1>{article.title}</h1>
-                {article.UserId === localStorage.getItem("UserId") ? (
+                {((UserIdLocal === article.UserId) || (UserIdLocal === 1)) ? (
                     <div>
-                        <RedButton>Supprimer</RedButton>
-                        <RedButton>Modifier</RedButton>  
+                        <Link to='/articles' onClick={()=>deleteArticle()}><RedButton >Supprimer</RedButton></Link>
+                        <Link to={'/articles/modify/'+index}><RedButton>Modifier</RedButton></Link>  
                     </div>
                 ):(
-                    <div>
+                    <div> 
                     </div>
                 )}        
             </ArticleDetailTitles>
