@@ -13,10 +13,10 @@
         * dialect = le type de base de données
     - Sauvegarder le fichier
 
-2. Si vous souhaitez initier automatiquement et peupler la base de données, dans le dossier backend, depuis un terminal, lancer les commandes suivantes:
+2. Si vous souhaitez initialiser automatiquement et peupler la base de données, dans le dossier backend, depuis un terminal, lancer les commandes suivantes:
     - sequelize db:create, pour créer la base de données
     - sequelize db:migrate, pour créer les tables
-    - sequelize db:seed:all, pour peulpler les tables de quelques exemples
+    - sequelize db:seed:all, pour peupler les tables de quelques exemples
 
 3. Paramétrer la clé d'authentification:
     - Dans le dossier backend, dupliquer le fichier ".env-prod" et nommer ce nouveau fichier ".env"
