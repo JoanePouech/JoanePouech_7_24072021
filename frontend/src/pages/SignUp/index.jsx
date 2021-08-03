@@ -38,7 +38,7 @@ const SignUpForm = styled.form`
 `
 
 function SignUp () {
-    const textRegex = new RegExp ("^[\\w\\ \\'\\-\\u00C0-\\u024F]+$"); // Expression régulière pour les champs "text"
+    const textRegex = new RegExp ("^[^<>]+$"); // Expression régulière pour les champs textes excluant les chevrons
     const emailRegex = new RegExp ('^[\\w\\-\\.\\+]+\\@[\\w\\.\\-]+\\.[\\w]{2,4}$'); // Expression régulière pour les champs "email"
     let username = "", email = "", password = "";
     let usernameValidity = false, emailValidity = false, passwordValidity = false;
@@ -56,9 +56,9 @@ function SignUp () {
         if (!email || !password || !username) {
             alert("Tous les champs sont obligatoires");
         } else {
-            (!textRegex.test(username)) ? alert("Le nom d'utilisateur ne doit contenir que des lettres ou des chiffres") : usernameValidity = true;
+            (!textRegex.test(username)) ? alert("Votre nom d'utilisateur contient des caractères spéciaux non autorisés") : usernameValidity = true;
             (!emailRegex.test(email)) ? alert("Votre email doit être du format jean.dupont@mail.com") : emailValidity = true;
-            (!textRegex.test(password)) ? alert("Le mot de passe ne doit contenir que des lettres ou des chiffres") : passwordValidity = true;
+            (!textRegex.test(password)) ? alert("Votre mot de passe contient des caractères spéciaux non autorisés") : passwordValidity = true;
         }
     
         //Envoi de la requête
