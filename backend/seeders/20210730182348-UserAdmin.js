@@ -13,9 +13,11 @@ module.exports = {
     */
     await queryInterface.bulkInsert('users', [{
       username: 'ChargéCom',
-      email: 'user00@test.fr',
-      password: 'mdp00',
-      isAdmin: true
+      email: 'dXNlcjAwQHRlc3QuZnI=', // user00@test.fr
+      password: '$2b$10$3xdKk2dM4z0qh82RnI57FuBxlfWO8MWVpwN97UppchSyd7XOdeGiC', // mdp00
+      isAdmin: true,
+      createdAt:"2021-08-01 09:00:00",
+      updatedAt:"2021-08-01 09:00:00"
     }], {});
   },
 

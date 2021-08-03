@@ -14,23 +14,33 @@ module.exports = {
     await queryInterface.bulkInsert('comments', [{
       articleId: 2,
       username: "User02",
-      post: 'Christiani et celerari conpulsus ad scriptae tortis confessisque haec etiam'
+      post: 'Christiani et celerari conpulsus ad scriptae tortis confessisque haec etiam',
+      createdAt:"2021-08-01 09:00:00",
+      updatedAt:"2021-08-01 09:00:00"
     },{
       articleId: 2,
       username: "User04",
-      post: 'Ea autem voluit cum haec'
+      post: 'Ea autem voluit cum haec',
+      createdAt:"2021-08-01 09:00:00",
+      updatedAt:"2021-08-01 09:00:00"
     },{
       articleId: 2,
       username: "User01",
-      post: 'Facinorum circulo terrena duplici alii'
+      post: 'Facinorum circulo terrena duplici alii',
+      createdAt:"2021-08-01 09:00:00",
+      updatedAt:"2021-08-01 09:00:00"
     },{
       articleId: 2,
       username: "User01",
-      post: 'Easque conscientia Censorius posse quasi spernentem curant id ut monstravit'
+      post: 'Easque conscientia Censorius posse quasi spernentem curant id ut monstravit',
+      createdAt:"2021-08-01 09:00:00",
+      updatedAt:"2021-08-01 09:00:00"
     },{
       articleId: 2,
       username: "User05",
-      post: 'Cum culpa saepeque homines discessurum'
+      post: 'Cum culpa saepeque homines discessurum',
+      createdAt:"2021-08-01 09:00:00",
+      updatedAt:"2021-08-01 09:00:00"
     }], {});
   },
 

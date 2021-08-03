@@ -9,7 +9,7 @@ const commentsRoutes = require('./routes/comments');
 //Configuration du limiteur de requêtes
 const limiter = rateLimit ({
     windowMs: 10*60*1000, // 10 minutes (en ms) - temps de blocage
-    max: 1000 // nombre de requêtes autorisées
+    max: 10 // nombre de requêtes autorisées
 });
 
 //Création de l'application Express
