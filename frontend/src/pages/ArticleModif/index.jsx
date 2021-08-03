@@ -38,7 +38,7 @@ const ArticleNewForm = styled.form`
 function ArticleNew () {
     const token = localStorage.getItem("Token");
     const index = parseInt(useParams().id);
-    const textRegex = new RegExp ("^[^<>]+$"); // Expression régulière pour les champs "text" excluant les chevrons
+    const textRegex = new RegExp ("^[^<>]+$"); // Expression régulière pour les champs textes excluant les chevrons
     let title = "", content = "";
     let titleValidity = false, contentValidity = false;
     const [oldVersion, setOldVersion] = useState([]);

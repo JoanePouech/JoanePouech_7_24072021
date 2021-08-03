@@ -4,6 +4,13 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const {base64encode, base64decode} = require('nodejs-base64');
 
+// Requête GET générale
+exports.getAllUsers = (req, res, next) => {
+    model.User.findAll()
+    .then(users => res.status(200).json(users))
+    .catch(error => res.status(400).json({error}));
+}
+
 //Requête POST SignUp
 exports.signup = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)

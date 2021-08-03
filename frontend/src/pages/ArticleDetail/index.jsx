@@ -45,12 +45,18 @@ const ArticleDetailComments = styled.div`
 `
 
 function ArticleDetail () {
+    const textRegex = new RegExp ("^[^<>]+$"); // Expression régulière pour les champs textes excluant les chevrons
     const index = parseInt(useParams().id);
+    const token = localStorage.getItem("Token");
     const [article, setArticle] = useState([]);
+    const [refreshComment, setRefreshComment] = useState(false);
     const [commentsList, setCommentsList] = useState([]);
     const UserIdLocal = parseInt(localStorage.getItem("UserId"));
 
+
+    // Récupérer et afficher les informations sur l'article de la page
     useEffect(() => {
+        console.log(refreshComment);
         async function fetchData() {
             const token = localStorage.getItem("Token");
             try {
@@ -69,13 +75,12 @@ function ArticleDetail () {
               }
           }
           fetchData()
-    }, [])
+    }, [refreshComment, index])
 
+    // Bouton supprimer pour effacer l'article
     function deleteArticle () {    
-        console.log("A")    ;
         async function fetchData() {
-            try {
-                const token = localStorage.getItem("Token");
+            try {                
                 const response = await fetch(`http://localhost:3000/api/articles/`+index, {
                     method: "DELETE",
                     headers: {
@@ -97,6 +102,50 @@ function ArticleDetail () {
         fetchData();
     };
 
+    // Bouton Envoyer pour poster un commentaire
+    function commentSubmit(event) {
+        setRefreshComment(false);
+        let commentValidity = false;
+        const comment = event.target[0].value;
+        event.preventDefault();
+        // Vérification des données: non nulles & format valable
+        if (!comment) {
+            alert("Votre commentaire est vide");
+        } else {
+            (!textRegex.test(comment)) ? alert("Votre commentaire contient des caractères spéciaux non autorisés") : commentValidity = true;
+        }
+        //Envoi de la requête
+        if (commentValidity) {
+            const ArticleId = index;
+            const username = localStorage.getItem("Username");
+            const post = comment;
+            async function fetchData() {
+                try {
+                    const response = await fetch(`http://localhost:3000/api/comments/`+index, {
+                        method: "POST",
+                        headers: {
+                            "Authorization": "Bearer " + token,
+                            "Accept": "application/json",
+                            "Content-type": "application/json"
+                        },
+                        body: JSON.stringify({ArticleId, username, post})
+                    });
+                    const data = await response.json();
+                    if (data.error) {
+                        alert(data.error);
+                    } else {
+                        alert("Nouveau commentaire ajouté");
+                        event.target.reset();
+                        setRefreshComment(true);
+                    }
+                } catch (err) {
+                    console.log(err)                    
+                }
+            }
+            fetchData()            
+        }
+    }
+
     return (
         <ArticleDetailContainer>
             <Link to='/articles'>
@@ -115,7 +164,7 @@ function ArticleDetail () {
                 )}        
             </ArticleDetailTitles>
             <ArticleDetailContent>{article.content}</ArticleDetailContent>
-            <ArticleDetailAddComment>
+            <ArticleDetailAddComment onSubmit={(event) => commentSubmit(event)}>
                 <input name="comment" id="comment" type="text" placeholder="Ajoutez votre commentaire ici" required />
                 <RedButton>Envoyer</RedButton>
             </ArticleDetailAddComment>
@@ -123,6 +172,7 @@ function ArticleDetail () {
                 {commentsList.map((comment) => (
                     <Comment 
                         key={comment.id}
+                        commentId={comment.id}
                         profile={comment.username}
                         content={comment.post}
                     />

@@ -26,7 +26,7 @@ const ArticleSummary = styled.div`
     text-overflow: ellipsis;
     background-color: ${colors.tertiary};
 `
-const ArticleSocial = styled.div`
+const ArticleAuthor = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -36,15 +36,15 @@ const ArticleSocial = styled.div`
     }
 `
 
-function Article ({title, content, like, comments}) {
+function Article ({title, content, author}) {
     return (
         <StyledArticleContainer>
             <h2>{title}</h2>
             <p className="primary-color">Aperçu:</p>
             <ArticleSummary>{content}</ArticleSummary> 
-            <ArticleSocial>
-                <p className="remark">Commentaires: {comments}</p>
-            </ArticleSocial>
+            <ArticleAuthor>
+                <p className="remark">Auteur: {author}</p>
+            </ArticleAuthor>
         </StyledArticleContainer>        
     )
 };

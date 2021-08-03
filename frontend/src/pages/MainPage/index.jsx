@@ -30,8 +30,8 @@ const ArticlesContainer = styled.div`
 `
 
 function MainPage () {
-
     const [articlesList, setArticlesList] = useState([]);
+    const [usersList, setUsersList] = useState([]);
 
     useEffect(() => {
         async function fetchData() {
@@ -43,9 +43,23 @@ function MainPage () {
             } catch (err) {
                 console.log(err)
             }
+            try {
+                const token = localStorage.getItem("Token");
+                const response = await fetch(`http://localhost:3000/api/auth`, {headers: {"Authorization": "Bearer " + token}})
+                const data = await response.json()
+                setUsersList(data)
+            } catch (err) {
+                console.log(err)
+            }
           }
           fetchData()
     }, [])
+
+    function findAuthorName(UserId) {
+        for (let i in usersList) {
+            if (UserId === usersList[i].id) return usersList[i].username
+        }
+    };
 
     return (
         <MainPageContainer>
@@ -61,7 +75,7 @@ function MainPage () {
                         <Article 
                             title={article.title}
                             content={article.content}
-                            comments={article.comments}
+                            author={findAuthorName(article.UserId)}
                         />
                     </Link>))}                    
                 

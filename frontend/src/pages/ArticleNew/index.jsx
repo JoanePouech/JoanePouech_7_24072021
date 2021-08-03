@@ -34,7 +34,7 @@ const ArticleNewForm = styled.form`
 `
 
 function ArticleNew () {
-    const textRegex = new RegExp ("^[^<>]+$"); // Expression régulière pour les champs "text"
+    const textRegex = new RegExp ("^[^<>]+$"); // Expression régulière pour les champs textes excluant les chevrons
     let title = "", content = "";
     let titleValidity = false, contentValidity = false;
 
