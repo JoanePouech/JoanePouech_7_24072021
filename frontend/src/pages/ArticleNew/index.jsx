@@ -21,12 +21,13 @@ const ArticleNewForm = styled.form`
         font-size: 1.5rem;
         padding-bottom: 1rem;
     }
-    & input {
+    & input, textarea {
         width: 80%;
         height: 3.5rem;
         margin-bottom:2rem;
         border: 1px solid ${colors.primary};
         background-color: ${colors.tertiary};
+        resize:none;
     }
     & #content {
         height: 30rem;

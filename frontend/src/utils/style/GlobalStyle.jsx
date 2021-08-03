@@ -19,7 +19,7 @@ const StyledGlobalStyle = createGlobalStyle`
     }
 
     h1 {
-        font-size: 3rem;
+        font-size: 2.5rem;
         color: ${colors.secondary};
         text-align: center;
     }
@@ -33,8 +33,19 @@ const StyledGlobalStyle = createGlobalStyle`
         font-size: 1.5rem;
     }
 
+    em {
+        font-size: 1.5rem;
+        font-style: normal;
+        text-decoration: underline;
+    }
+
+    input, textarea {
+        font-size: 1.5rem;
+        color: ${colors.primary};
+    }
+
     .remark {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
         font-style: italic
     }
 

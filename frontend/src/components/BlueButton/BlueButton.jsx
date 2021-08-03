@@ -9,6 +9,7 @@ const StyledBlueButton = styled.button`
     border: none;
     border-radius: 8px;
     & {children} {
+        font-size: 1.5rem;
         font-weight: bold;
         color: white;
     }

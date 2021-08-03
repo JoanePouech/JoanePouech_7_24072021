@@ -19,16 +19,39 @@ const HeaderContainer = styled.header`
 const HeaderLogo = styled.img`
     height: 350px;
     @media screen and (max-width: 768px) {
-        height: 190px; 
+        height: 150px; 
     }
 `
 const HeaderUser = styled.div`
+    margin-right: 2rem;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: flex-end;
     & a {
+        font-size: 3rem;
         color: white};
     }
+    & .HeaderUser_username {
+        margin-bottom: 3.5rem;
+        @media screen and (max-width: 768px) {
+            margin-bottom: 1.8rem;
+        }
+
+    }
+    & .HeaderUser_manage {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        cursor:pointer;
+        & p {
+            margin: 0.3rem 0;
+        }
+    }
+    @media screen and (max-width: 768px) {
+        margin-right: 0.2rem;
+    }
+    
 `
 
 function Header () {
@@ -86,9 +109,12 @@ function Header () {
                 </HeaderUser>
             ) : (
                 <HeaderUser>
-                    <p>Bonjour {username}</p>
-                    <p className="remark" onClick={()=>disconnectUser()}>Déconnexion</p>
-                    <p className="remark" onClick={()=>deleteUser()}>Supprimer le compte</p>                    
+                    <p className="HeaderUser_username">Bonjour {username}</p>
+                    <div className="HeaderUser_manage">
+                        <p className="remark" onClick={()=>disconnectUser()}>Déconnexion</p>
+                        <p className="remark" onClick={()=>deleteUser()}>Supprimer le compte</p>  
+                    </div>
+                  
                 </HeaderUser>
             )}
         </HeaderContainer>

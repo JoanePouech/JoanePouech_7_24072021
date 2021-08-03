@@ -105,7 +105,7 @@ function Login () {
                         <BlueButton className="white-color">Se connecter</BlueButton>
                 </LoginForm>
                 <h2>Nouveau venu ?</h2>
-                <Link to="/auth/signup" className="primary-color">Inscrivez-vous ici</Link>
+                <Link to="/auth/signup" className="primary-color">Inscrivez-vous <em>ici</em></Link>
             </LoginBox>            
         </LoginContainer>
     )

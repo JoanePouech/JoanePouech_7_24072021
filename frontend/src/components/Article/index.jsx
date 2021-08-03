@@ -2,15 +2,22 @@ import colors from '../../utils/style/colors';
 import styled from 'styled-components';
 
 const StyledArticleContainer = styled.div`
-    width: 30vw;
+    width: 29vw;
+    height: 300px;
     margin-bottom: 2rem;
+    margin-right: 1.3vw;
     padding: 0.5rem;
     border: solid 1px ${colors.primary};
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
+    & .articleContainer_summary {
+        color: ${colors.primary};
+        margin: 0
+    }
     @media screen and (max-width: 768px) {
-        width: 40vw;
+        width: 43vw;
+        margin-right: 1.7vw;
     }
     @media screen and (max-width: 425px) {
         width: 80vw;
@@ -18,7 +25,7 @@ const StyledArticleContainer = styled.div`
 `
 const ArticleSummary = styled.div`
     font-size: 1.5rem;
-    height: 100px;
+    height: 150px;
     color: ${colors.primary};
     padding: 0.5rem;
     text-align: justify;
@@ -40,7 +47,7 @@ function Article ({title, content, author}) {
     return (
         <StyledArticleContainer>
             <h2>{title}</h2>
-            <p className="primary-color">Aperçu:</p>
+            <p className="articleContainer_summary">Aperçu:</p>
             <ArticleSummary>{content}</ArticleSummary> 
             <ArticleAuthor>
                 <p className="remark">Auteur: {author}</p>

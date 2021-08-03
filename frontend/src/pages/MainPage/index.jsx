@@ -22,8 +22,9 @@ const MainPageTitles = styled.div`
 `
 const ArticlesContainer = styled.div`
     display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
     flex-wrap: wrap;
-    justify-content: space-between;
     @media screen and (max-width: 425px) {
         justify-content: center;
     }
@@ -77,8 +78,7 @@ function MainPage () {
                             content={article.content}
                             author={findAuthorName(article.UserId)}
                         />
-                    </Link>))}                    
-                
+                    </Link>))}              
             </ArticlesContainer>
         </MainPageContainer>        
     )

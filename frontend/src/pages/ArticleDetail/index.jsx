@@ -19,8 +19,17 @@ const ArticleDetailTitles = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    @media screen and (max-width: 425px) {
-        flex-direction: column-reverse;
+    & .ArticleDetailTitles_title {
+        text-align: left;
+    }
+    & div {
+        display: flex;
+        @media screen and (max-width: 425px) {
+            flex-direction: column;
+        }
+    }
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
     }
 `
 const ArticleDetailContent = styled.p`
@@ -40,6 +49,7 @@ const ArticleDetailAddComment = styled.form`
     }
 `
 const ArticleDetailComments = styled.div`
+    height: 500px;
     overflow-y: scroll;
     overflow-x: wrap;
 `
@@ -56,7 +66,6 @@ function ArticleDetail () {
 
     // Récupérer et afficher les informations sur l'article de la page
     useEffect(() => {
-        console.log(refreshComment);
         async function fetchData() {
             const token = localStorage.getItem("Token");
             try {
@@ -152,14 +161,14 @@ function ArticleDetail () {
                 <BackButton />
             </Link>            
             <ArticleDetailTitles>
-                <h1>{article.title}</h1>
+                <h1 className="ArticleDetailTitles_title">{article.title}</h1>
                 {((UserIdLocal === article.UserId) || (UserIdLocal === 1)) ? (
-                    <div>
+                    <div className="ArticleDetailTitles_buttons">
                         <Link to='/articles' onClick={()=>deleteArticle()}><RedButton >Supprimer</RedButton></Link>
                         <Link to={'/articles/modify/'+index}><RedButton>Modifier</RedButton></Link>  
                     </div>
                 ):(
-                    <div> 
+                    <div className="ArticleDetailTitles_buttons"> 
                     </div>
                 )}        
             </ArticleDetailTitles>
