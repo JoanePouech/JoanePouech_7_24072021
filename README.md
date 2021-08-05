@@ -1,6 +1,13 @@
-# JoanePouech_7_24072021
+## Projet 7 - Formation Développeur Web - OpenClassrooms
+## Créez un réseau social d'entreprise
 
-## Instructions d'installation
+### Contexte du projet
+Réaliser une application complète où les salariés d'une entreprise publient des textes et ont la possibilité de commenter les publications.
+Réalisation à partir de zéro (Graphisme, Front-end, Back-end).
+Front-End: utilisation du framework React.
+Back-end: utilisation de Node.js, Express, Sequelize et MySQL.
+
+### Instructions d'installation
 
 1. Cloner le dossier GitHub localement
 
