@@ -1,4 +1,4 @@
-## Projet 7 - Formation Développeur Web - OpenClassrooms
+## Projet 6 - Formation Développeur Web - OpenClassrooms
 ## Créez un réseau social d'entreprise
 
 ### Contexte du projet
